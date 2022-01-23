@@ -86,12 +86,19 @@ class TransactionmsApplicationTests {
 		transaction.setTransactionId(id);
 		TransactionDetails transactionDetails=new TransactionDetails();
 		transactionDetails.setTransactionId(id);
-        doReturn(transaction).when(repository).findTransactionByTransactionId(id);
-        when(util.toTransactionDetails(transaction)).thenReturn(transactionDetails);
-        TransactionDetails result =service.fetchAllByTransactionId(id);
-        assertEquals(transactionDetails,result);
-        verify(service).fetchAllByTransactionId(id);
-        verify(util).toTransactionDetails(transaction);
+		//doReturn(transaction).when(service).findByTransactionId(id);
+		 doReturn(transaction).when(service).findByTransactionId(id);
+	        when(util.toTransactionDetails(transaction)).thenReturn(transactionDetails);
+	        TransactionDetails result =service.fetchAllByTransactionId(id);
+	        assertEquals(transactionDetails,result);
+	        verify(service).fetchAllByTransactionId(id);
+	        verify(util).toTransactionDetails(transaction);
+//        doReturn(transaction).when(repository).findById(id);
+//        when(util.toTransactionDetails(transaction)).thenReturn(transactionDetails);
+//        TransactionDetails result =service.fetchAllByTransactionId(id);
+//        assertEquals(transactionDetails,result);
+//        verify(service).fetchAllByTransactionId(id);
+//        verify(util).toTransactionDetails(transaction);
 	}
 	
 	@Test
