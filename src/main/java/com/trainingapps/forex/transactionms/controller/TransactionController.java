@@ -76,10 +76,10 @@ public class TransactionController {
 	}
 	
 	
-	@GetMapping("/report/{reportFormat}/{userId}")
-	public String exportReport(@PathVariable String reportFormat,@PathVariable Long userId){
-		return transactionServiceImpl.exportReport(reportFormat, userId);
-	}
+//	@GetMapping("/report/{reportFormat}/{userId}")
+//	public String exportReport(@PathVariable String reportFormat,@PathVariable Long userId){
+//		return transactionServiceImpl.exportReport(reportFormat, userId);
+//	}
 	
 	@GetMapping("/findIds/startDate/{startDate}/endDate/{endDate}")
 	public Set<Long> findTransactionIds(@PathVariable String startDate,@PathVariable String endDate) {

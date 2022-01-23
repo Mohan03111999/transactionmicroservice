@@ -30,13 +30,13 @@ import com.trainingapps.forex.transactionms.util.Utility;
 //import com.trainingapps.forex.transactionms.vo.ResponseTemplateVO;
 //import com.trainingapps.forex.transactionms.vo.User;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+//import net.sf.jasperreports.engine.JRException;
+//import net.sf.jasperreports.engine.JasperCompileManager;
+//import net.sf.jasperreports.engine.JasperExportManager;
+//import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
+//import net.sf.jasperreports.engine.JasperReport;
+//import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
 public class TransactionServiceImpl implements ITransactionService{
@@ -143,54 +143,54 @@ public class TransactionServiceImpl implements ITransactionService{
 	
 	
 	
-	public String exportReport(String reportFormat, Long userId) {
-		//String path = "C:\\Users\\user\\Desktop\\Report";
-		String path = "D:\\";
-		List<TransactionDetails> transactions = fetchAllByUserId(userId);
-		// load file and compile it
-		File file;
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");  
-		LocalDateTime date = LocalDateTime.now();
-		String now = dtf.format(date);
-		try {
-			file = ResourceUtils.getFile("classpath:transaction.jrxml");
-
-			JasperReport jasperReport;
-
-			jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-
-			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(transactions);
-			Map<String, Object> parameters = new HashMap<>();
-			parameters.put("createdBy", "Cash Catch");
-			JasperPrint jasperPrint;
-
-			jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-			if (reportFormat.equalsIgnoreCase("html")) {
-				try {
-					JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\transactions_"+now+".html");
-				} catch (JRException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if (reportFormat.equalsIgnoreCase("pdf")) {
-				try {
-					JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\transactions_"+now+".pdf");
-				} catch (JRException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return "report generated in path : " + path;
-	}
+//	public String exportReport(String reportFormat, Long userId) {
+//		//String path = "C:\\Users\\user\\Desktop\\Report";
+//		String path = "D:\\";
+//		List<TransactionDetails> transactions = fetchAllByUserId(userId);
+//		// load file and compile it
+//		File file;
+//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");  
+//		LocalDateTime date = LocalDateTime.now();
+//		String now = dtf.format(date);
+//		try {
+//			file = ResourceUtils.getFile("classpath:transaction.jrxml");
+//
+//			JasperReport jasperReport;
+//
+//			jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+//
+//			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(transactions);
+//			Map<String, Object> parameters = new HashMap<>();
+//			parameters.put("createdBy", "Cash Catch");
+//			JasperPrint jasperPrint;
+//
+//			jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+//			if (reportFormat.equalsIgnoreCase("html")) {
+//				try {
+//					JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\transactions_"+now+".html");
+//				} catch (JRException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//			if (reportFormat.equalsIgnoreCase("pdf")) {
+//				try {
+//					JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\transactions_"+now+".pdf");
+//				} catch (JRException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JRException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return "report generated in path : " + path;
+//	}
 	
 	@Override
 	public Set<Long> findTransactionIds(String startDate, String endDate) {
